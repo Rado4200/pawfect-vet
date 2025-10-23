@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pawfect Care Veterinary Clinic - Professional pet care services in Barcelona. Caring for pets like family.">
+    <title>Pawfect Care Veterinary Clinic | Barcelona</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #3EB8FF;
+            --secondary-blue: #1F6FB2;
+            --accent-coral: #FF6B35;
+            --white: #FFFFFF;
+            --light-grey: #F5F7FA;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-blue);
+        }
+
+        .language-selector {
+            position: relative;
+        }
+
+        .language-btn {
+            background: var(--light-grey);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-family: 'Nunito Sans', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .language-btn:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 110%;
+            right: 0;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            display: none;
+            min-width: 120px;
+            overflow: hidden;
+        }
+
+        .language-dropdown.active {
+            display: block;
+        }
+
+        .language-dropdown button {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: none;
+            background: transparent;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-family: 'Nunito Sans', sans-serif;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .language-dropdown button:hover {
+            background: var(--light-grey);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        section {
+            padding: 6rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(30, 111, 178, 0.9), rgba(62, 184, 255, 0.8)),
+                        url('https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=1600&h=900&fit=crop') center/cover;
+            color: var(--white);
+            margin-top: 70px;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent-coral);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--secondary-blue);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .about-intro {
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            color: var(--text-light);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(62, 184, 255, 0.2);
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .team-info {
+            padding: 1.5rem;
+        }
+
+        .team-info h3 {
+            color: var(--secondary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-info .role {
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .team-info p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .map-container {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .map-container img {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-caption {
+            margin-top: 1rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(62, 184, 255, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: var(--secondary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+        }
+
+        #testimonials {
+            background: var(--light-grey);
+        }
+
+        .testimonial-carousel {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 250px;
+        }
+
+        .testimonial {
+            text-align: center;
+            padding: 2rem;
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .testimonial.active {
+            opacity: 1;
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--secondary-blue);
+        }
+
+        .testimonial-pet {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--primary-blue);
+            transform: scale(1.3);
+        }
+
+        #contact {
+            background: var(--white);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-form {
+            background: var(--light-grey);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--secondary-blue);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: var(--white);
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-info {
+            padding: 2rem 0;
+        }
+
+        .contact-info h3 {
+            color: var(--secondary-blue);
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin-top: 0.2rem;
+        }
+
+        .info-content h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .info-content p {
+            color: var(--text-light);
+        }
+
+        .success-message {
+            display: none;
+            background: #4CAF50;
+            color: var(--white);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        footer {
+            background: var(--secondary-blue);
+            color: var(--white);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--accent-coral);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                padding: 2rem;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo" id="logoText">🐾 Pawfect Care</a>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="nav-link active" data-translate="navHome">Home</a></li>
+                    <li><a href="#about" class="nav-link" data-translate="navAbout">About</a></li>
+                    <li><a href="#services" class="nav-link" data-translate="navServices">Services</a></li>
+                    <li><a href="#testimonials" class="nav-link" data-translate="navTestimonials">Testimonials</a></li>
+                    <li><a href="#contact" class="nav-link" data-translate="navContact">Contact</a></li>
+                    <li class="language-selector">
+                        <button class="language-btn" id="languageBtn">EN 🌐</button>
+                        <div class="language-dropdown" id="languageDropdown">
+                            <button onclick="changeLanguage('en')">English</button>
+                            <button onclick="changeLanguage('de')">Deutsch</button>
+                            <button onclick="changeLanguage('es')">Español</button>
+                            <button onclick="changeLanguage('bg')">Български</button>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 data-translate="heroTitle">Caring for pets like family</h1>
+            <p data-translate="heroSubtitle">Professional veterinary care in the heart of Barcelona</p>
+            <a href="#contact" class="btn-primary" data-translate="heroButton">Book Appointment</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title" data-translate="aboutTitle">About Us</h2>
+            <p class="about-intro" data-translate="aboutIntro">
+                At Pawfect Care, we believe every pet deserves compassionate, expert care. Our dedicated team of veterinary professionals is committed to providing the highest quality healthcare for your beloved companions, treating each animal with the love and respect they deserve.
+            </p>
+
+            <h3 class="section-title" style="font-size: 2rem; margin-top: 3rem;" data-translate="teamTitle">Meet Our Team</h3>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop" alt="Dr. Maria Rodriguez">
+                    <div class="team-info">
+                        <h3 data-translate="vet1Name">Dr. Maria Rodriguez</h3>
+                        <p class="role" data-translate="vet1Role">Chief Veterinarian</p>
+                        <p data-translate="vet1Bio">With over 15 years of experience, Dr. Rodriguez specializes in internal medicine and emergency care. Her passion for animals shines through in every consultation.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop" alt="Dr. James Chen">
+                    <div class="team-info">
+                        <h3 data-translate="vet2Name">Dr. James Chen</h3>
+                        <p class="role" data-translate="vet2Role">Surgical Specialist</p>
+                        <p data-translate="vet2Bio">Dr. Chen brings expertise in advanced surgical techniques and orthopedics. He's dedicated to ensuring every procedure is performed with precision and care.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=400&fit=crop" alt="Dr. Sophie Laurent">
+                    <div class="team-info">
+                        <h3 data-translate="vet3Name">Dr. Sophie Laurent</h3>
+                        <p class="role" data-translate="vet3Role">Dental & Nutrition Expert</p>
+                        <p data-translate="vet3Bio">Specializing in preventive care, Dr. Laurent helps pets maintain optimal health through proper nutrition and dental hygiene programs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=1200&h=600&fit=crop" alt="Barcelona Location">
+                <p class="map-caption" data-translate="mapCaption">📍 Visit us in the heart of Barcelona, Spain</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title" data-translate="servicesTitle">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💉</div>
+                    <h3 data-translate="service1Title">Vaccinations</h3>
+                    <p data-translate="service1Desc">Comprehensive vaccination programs to protect your pets from preventable diseases and ensure their long-term health.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🩺</div>
+                    <h3 data-translate="service2Title">Check-ups</h3>
+                    <p data-translate="service2Desc">Regular health examinations to monitor your pet's wellbeing and catch potential issues early.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">⚕️</div>
+                    <h3 data-translate="service3Title">Surgery</h3>
+                    <p data-translate="service3Desc">State-of-the-art surgical facilities and expert care for routine and complex procedures.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🦷</div>
+                    <h3 data-translate="service4Title">Dental Care</h3>
+                    <p data-translate="service4Desc">Professional dental cleaning and treatment to maintain your pet's oral health and prevent disease.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">✂️</div>
+                    <h3 data-translate="service5Title">Grooming</h3>
+                    <p data-translate="service5Desc">Expert grooming services to keep your pet looking and feeling their best.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🥗</div>
+                    <h3 data-translate="service6Title">Nutrition</h3>
+                    <p data-translate="service6Desc">Personalized nutrition plans tailored to your pet's specific needs and health conditions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <div class="container">
+            <h2 class="section-title" data-translate="testimonialsTitle">What Our Clients Say</h2>
+            <div class="testimonial-carousel">
+                <div class="testimonial active">
+                    <p class="testimonial-quote" data-translate="testimonial1Quote">"The team at Pawfect Care saved my dog's life during an emergency. Their quick response and expert care were incredible. I can't thank them enough!"</p>
+                    <p class="testimonial-author" data-translate="testimonial1Author">Sarah Thompson</p>
+                    <p class="testimonial-pet" data-translate="testimonial1Pet">Owner of Max, Golden Retriever</p>
+                </div>
+
+                <div class="testimonial">
+                    <p class="testimonial-quote" data-translate="testimonial2Quote">"Dr. Rodriguez has been caring for my cat for years. She's knowledgeable, compassionate, and always takes time to answer all my questions. Highly recommended!"</p>
+                    <p class="testimonial-author" data-translate="testimonial2Author">Miguel Santos</p>
+                    <p class="testimonial-pet" data-translate="testimonial2Pet">Owner of Luna, Persian Cat</p>
+                </div>
+
+                <div class="testimonial">
+                    <p class="testimonial-quote" data-translate="testimonial3Quote">"From routine check-ups to dental care, Pawfect Care has always provided exceptional service. They truly treat pets like family!"</p>
+                    <p class="testimonial-author" data-translate="testimonial3Author">Emma Wilson</p>
+                    <p class="testimonial-pet" data-translate="testimonial3Pet">Owner of Bella, Beagle</p>
+                </div>
+            </div>
+            <div class="testimonial-dots">
+                <span class="dot active" onclick="goToTestimonial(0)"></span>
+                <span class="dot" onclick="goToTestimonial(1)"></span>
+                <span class="dot" onclick="goToTestimonial(2)"></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title" data-translate="contactTitle">Book an Appointment</h2>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <form id="appointmentForm">
+                        <div class="form-group">
+                            <label for="petName" data-translate="formPetName">Pet Name *</label>
+                            <input type="text" id="petName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="animalType" data-translate="formAnimalType">Animal Type *</label>
+                            <select id="animalType" required>
+                                <option value="" data-translate="formSelect">Select...</option>
+                                <option value="dog" data-translate="formDog">Dog</option>
+                                <option value="cat" data-translate="formCat">Cat</option>
+                                <option value="bird" data-translate="formBird">Bird</option>
+                                <option value="rabbit" data-translate="formRabbit">Rabbit</option>
+                                <option value="other" data-translate="formOther">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ownerName" data-translate="formOwnerName">Your Name *</label>
+                            <input type="text" id="ownerName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" data-translate="formEmail">Email *</label>
+                            <input type="email" id="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="datetime" data-translate="formDateTime">Preferred Date & Time *</label>
+                            <input type="datetime-local" id="datetime" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" data-translate="formMessage">Message</label>
+                            <textarea id="message" placeholder="Tell us about your pet's needs..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary" data-translate="formSubmit">Submit Appointment Request</button>
+                        <div class="success-message" id="successMessage" data-translate="formSuccess">
+                            Thank you! We'll get back to you soon to confirm your appointment.
+                        </div>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <h3 data-translate="contactInfoTitle">Contact Information</h3>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-content">
+                            <h4 data-translate="infoAddressTitle">Address</h4>
+                            <p data-translate="infoAddress">Carrer de Provença, 265<br>08008 Barcelona, Spain</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-content">
+                            <h4 data-translate="infoPhoneTitle">Phone</h4>
+                            <p data-translate="infoPhone">+34 932 156 789</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <div class="info-content">
+                            <h4 data-translate="infoEmailTitle">Email</h4>
+                            <p data-translate="infoEmail">info@pawfectcare.com</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">🕒</div>
+                        <div class="info-content">
+                            <h4 data-translate="infoHoursTitle">Opening Hours</h4>
+                            <p data-translate="infoHours">Mon-Fri: 9:00 - 20:00<br>Sat: 10:00 - 18:00<br>Sun: Emergency only</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 data-translate="footerAboutTitle">Pawfect Care</h4>
+                    <p data-translate="footerAboutText">Your trusted partner in pet healthcare. Providing compassionate, professional veterinary services in Barcelona since 2010.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-icon" aria-label="Instagram">📷</a>
+                        <a href="#" class="social-icon" aria-label="Twitter">🐦</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4 data-translate="footerQuickLinksTitle">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home" data-translate="navHome">Home</a></li>
+                        <li><a href="#about" data-translate="navAbout">About</a></li>
+                        <li><a href="#services" data-translate="navServices">Services</a></li>
+                        <li><a href="#testimonials" data-translate="navTestimonials">Testimonials</a></li>
+                        <li><a href="#contact" data-translate="navContact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 data-translate="footerServicesTitle">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services" data-translate="service1Title">Vaccinations</a></li>
+                        <li><a href="#services" data-translate="service2Title">Check-ups</a></li>
+                        <li><a href="#services" data-translate="service3Title">Surgery</a></li>
+                        <li><a href="#services" data-translate="service4Title">Dental Care</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p data-translate="footerCopyright">&copy; 2025 Pawfect Care Veterinary Clinic. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            en: {
+                navHome: "Home",
+                navAbout: "About",
+                navServices: "Services",
+                navTestimonials: "Testimonials",
+                navContact: "Contact",
+                heroTitle: "Caring for pets like family",
+                heroSubtitle: "Professional veterinary care in the heart of Barcelona",
+                heroButton: "Book Appointment",
+                aboutTitle: "About Us",
+                aboutIntro: "At Pawfect Care, we believe every pet deserves compassionate, expert care. Our dedicated team of veterinary professionals is committed to providing the highest quality healthcare for your beloved companions, treating each animal with the love and respect they deserve.",
+                teamTitle: "Meet Our Team",
+                vet1Name: "Dr. Maria Rodriguez",
+                vet1Role: "Chief Veterinarian",
+                vet1Bio: "With over 15 years of experience, Dr. Rodriguez specializes in internal medicine and emergency care. Her passion for animals shines through in every consultation.",
+                vet2Name: "Dr. James Chen",
+                vet2Role: "Surgical Specialist",
+                vet2Bio: "Dr. Chen brings expertise in advanced surgical techniques and orthopedics. He's dedicated to ensuring every procedure is performed with precision and care.",
+                vet3Name: "Dr. Sophie Laurent",
+                vet3Role: "Dental & Nutrition Expert",
+                vet3Bio: "Specializing in preventive care, Dr. Laurent helps pets maintain optimal health through proper nutrition and dental hygiene programs.",
+                mapCaption: "📍 Visit us in the heart of Barcelona, Spain",
+                servicesTitle: "Our Services",
+                service1Title: "Vaccinations",
+                service1Desc: "Comprehensive vaccination programs to protect your pets from preventable diseases and ensure their long-term health.",
+                service2Title: "Check-ups",
+                service2Desc: "Regular health examinations to monitor your pet's wellbeing and catch potential issues early.",
+                service3Title: "Surgery",
+                service3Desc: "State-of-the-art surgical facilities and expert care for routine and complex procedures.",
+                service4Title: "Dental Care",
+                service4Desc: "Professional dental cleaning and treatment to maintain your pet's oral health and prevent disease.",
+                service5Title: "Grooming",
+                service5Desc: "Expert grooming services to keep your pet looking and feeling their best.",
+                service6Title: "Nutrition",
+                service6Desc: "Personalized nutrition plans tailored to your pet's specific needs and health conditions.",
+                testimonialsTitle: "What Our Clients Say",
+                testimonial1Quote: "The team at Pawfect Care saved my dog's life during an emergency. Their quick response and expert care were incredible. I can't thank them enough!",
+                testimonial1Author: "Sarah Thompson",
+                testimonial1Pet: "Owner of Max, Golden Retriever",
+                testimonial2Quote: "Dr. Rodriguez has been caring for my cat for years. She's knowledgeable, compassionate, and always takes time to answer all my questions. Highly recommended!",
+                testimonial2Author: "Miguel Santos",
+                testimonial2Pet: "Owner of Luna, Persian Cat",
+                testimonial3Quote: "From routine check-ups to dental care, Pawfect Care has always provided exceptional service. They truly treat pets like family!",
+                testimonial3Author: "Emma Wilson",
+                testimonial3Pet: "Owner of Bella, Beagle",
+                contactTitle: "Book an Appointment",
+                formPetName: "Pet Name *",
+                formAnimalType: "Animal Type *",
+                formSelect: "Select...",
+                formDog: "Dog",
+                formCat: "Cat",
+                formBird: "Bird",
+                formRabbit: "Rabbit",
+                formOther: "Other",
+                formOwnerName: "Your Name *",
+                formEmail: "Email *",
+                formDateTime: "Preferred Date & Time *",
+                formMessage: "Message",
+                formSubmit: "Submit Appointment Request",
+                formSuccess: "Thank you! We'll get back to you soon to confirm your appointment.",
+                contactInfoTitle: "Contact Information",
+                infoAddressTitle: "Address",
+                infoAddress: "Carrer de Provença, 265<br>08008 Barcelona, Spain",
+                infoPhoneTitle: "Phone",
+                infoPhone: "+34 932 156 789",
+                infoEmailTitle: "Email",
+                infoEmail: "info@pawfectcare.com",
+                infoHoursTitle: "Opening Hours",
+                infoHours: "Mon-Fri: 9:00 - 20:00<br>Sat: 10:00 - 18:00<br>Sun: Emergency only",
+                footerAboutTitle: "Pawfect Care",
+                footerAboutText: "Your trusted partner in pet healthcare. Providing compassionate, professional veterinary services in Barcelona since 2010.",
+                footerQuickLinksTitle: "Quick Links",
+                footerServicesTitle: "Services",
+                footerCopyright: "© 2025 Pawfect Care Veterinary Clinic. All rights reserved."
+            },
+            de: {
+                navHome: "Startseite",
+                navAbout: "Über uns",
+                navServices: "Dienstleistungen",
+                navTestimonials: "Bewertungen",
+                navContact: "Kontakt",
+                heroTitle: "Wir kümmern uns um Haustiere wie um Familie",
+                heroSubtitle: "Professionelle Tierpflege im Herzen von Barcelona",
+                heroButton: "Termin buchen",
+                aboutTitle: "Über uns",
+                aboutIntro: "Bei Pawfect Care glauben wir, dass jedes Haustier mitfühlende, fachkundige Betreuung verdient. Unser engagiertes Team von Tierärzten ist bestrebt, Ihren geliebten Begleitern die bestmögliche Gesundheitsversorgung zu bieten und jedes Tier mit der Liebe und dem Respekt zu behandeln, die es verdient.",
+                teamTitle: "Lernen Sie unser Team kennen",
+                vet1Name: "Dr. Maria Rodriguez",
+                vet1Role: "Chefärztin",
+                vet1Bio: "Mit über 15 Jahren Erfahrung ist Dr. Rodriguez auf Innere Medizin und Notfallversorgung spezialisiert. Ihre Leidenschaft für Tiere zeigt sich in jeder Konsultation.",
+                vet2Name: "Dr. James Chen",
+                vet2Role: "Chirurgiespezialist",
+                vet2Bio: "Dr. Chen bringt Expertise in fortgeschrittenen chirurgischen Techniken und Orthopädie mit. Er ist bestrebt, sicherzustellen, dass jeder Eingriff präzise und sorgfältig durchgeführt wird.",
+                vet3Name: "Dr. Sophie Laurent",
+                vet3Role: "Zahn- und Ernährungsexpertin",
+                vet3Bio: "Dr. Laurent ist auf Präventivpflege spezialisiert und hilft Haustieren, durch richtige Ernährung und Zahnhygieneprogramme optimale Gesundheit zu erhalten.",
+                mapCaption: "📍 Besuchen Sie uns im Herzen von Barcelona, Spanien",
+                servicesTitle: "Unsere Dienstleistungen",
+                service1Title: "Impfungen",
+                service1Desc: "Umfassende Impfprogramme zum Schutz Ihrer Haustiere vor vermeidbaren Krankheiten und zur Gewährleistung ihrer langfristigen Gesundheit.",
+                service2Title: "Untersuchungen",
+                service2Desc: "Regelmäßige Gesundheitsuntersuchungen zur Überwachung des Wohlbefindens Ihres Haustiers und frühzeitigen Erkennung potenzieller Probleme.",
+                service3Title: "Chirurgie",
+                service3Desc: "Hochmoderne chirurgische Einrichtungen und fachkundige Betreuung für Routine- und komplexe Eingriffe.",
+                service4Title: "Zahnpflege",
+                service4Desc: "Professionelle Zahnreinigung und Behandlung zur Erhaltung der Mundgesundheit Ihres Haustiers und Krankheitsprävention.",
+                service5Title: "Fellpflege",
+                service5Desc: "Fachkundige Pflegedienste, damit Ihr Haustier bestens aussieht und sich wohlfühlt.",
+                service6Title: "Ernährung",
+                service6Desc: "Personalisierte Ernährungspläne, die auf die spezifischen Bedürfnisse und Gesundheitszustände Ihres Haustiers zugeschnitten sind.",
+                testimonialsTitle: "Was unsere Kunden sagen",
+                testimonial1Quote: "Das Team von Pawfect Care hat das Leben meines Hundes in einem Notfall gerettet. Ihre schnelle Reaktion und fachkundige Betreuung waren unglaublich. Ich kann ihnen nicht genug danken!",
+                testimonial1Author: "Sarah Thompson",
+                testimonial1Pet: "Besitzerin von Max, Golden Retriever",
+                testimonial2Quote: "Dr. Rodriguez kümmert sich seit Jahren um meine Katze. Sie ist kompetent, mitfühlend und nimmt sich immer Zeit, alle meine Fragen zu beantworten. Sehr empfehlenswert!",
+                testimonial2Author: "Miguel Santos",
+                testimonial2Pet: "Besitzer von Luna, Perserkatze",
+                testimonial3Quote: "Von Routineuntersuchungen bis zur Zahnpflege hat Pawfect Care immer außergewöhnlichen Service geboten. Sie behandeln Haustiere wirklich wie Familie!",
+                testimonial3Author: "Emma Wilson",
+                testimonial3Pet: "Besitzerin von Bella, Beagle",
+                contactTitle: "Termin buchen",
+                formPetName: "Name des Haustiers *",
+                formAnimalType: "Tierart *",
+                formSelect: "Auswählen...",
+                formDog: "Hund",
+                formCat: "Katze",
+                formBird: "Vogel",
+                formRabbit: "Kaninchen",
+                formOther: "Andere",
+                formOwnerName: "Ihr Name *",
+                formEmail: "E-Mail *",
+                formDateTime: "Bevorzugtes Datum & Uhrzeit *",
+                formMessage: "Nachricht",
+                formSubmit: "Terminanfrage absenden",
+                formSuccess: "Vielen Dank! Wir werden uns bald bei Ihnen melden, um Ihren Termin zu bestätigen.",
+                contactInfoTitle: "Kontaktinformationen",
+                infoAddressTitle: "Adresse",
+                infoAddress: "Carrer de Provença, 265<br>08008 Barcelona, Spanien",
+                infoPhoneTitle: "Telefon",
+                infoPhone: "+34 932 156 789",
+                infoEmailTitle: "E-Mail",
+                infoEmail: "info@pawfectcare.com",
+                infoHoursTitle: "Öffnungszeiten",
+                infoHours: "Mo-Fr: 9:00 - 20:00<br>Sa: 10:00 - 18:00<br>So: Nur Notfälle",
+                footerAboutTitle: "Pawfect Care",
+                footerAboutText: "Ihr vertrauenswürdiger Partner in der Haustierpflege. Wir bieten seit 2010 mitfühlende, professionelle tierärztliche Dienstleistungen in Barcelona.",
+                footerQuickLinksTitle: "Schnelllinks",
+                footerServicesTitle: "Dienstleistungen",
+                footerCopyright: "© 2025 Pawfect Care Tierklinik. Alle Rechte vorbehalten."
+            },
+            es: {
+                navHome: "Inicio",
+                navAbout: "Nosotros",
+                navServices: "Servicios",
+                navTestimonials: "Testimonios",
+                navContact: "Contacto",
+                heroTitle: "Cuidamos a las mascotas como familia",
+                heroSubtitle: "Atención veterinaria profesional en el corazón de Barcelona",
+                heroButton: "Reservar cita",
+                aboutTitle: "Sobre nosotros",
+                aboutIntro: "En Pawfect Care, creemos que cada mascota merece atención compasiva y experta. Nuestro dedicado equipo de profesionales veterinarios se compromete a proporcionar la atención médica de más alta calidad para sus queridos compañeros, tratando a cada animal con el amor y respeto que merece.",
+                teamTitle: "Conoce a nuestro equipo",
+                vet1Name: "Dra. Maria Rodriguez",
+                vet1Role: "Veterinaria Jefe",
+                vet1Bio: "Con más de 15 años de experiencia, la Dra. Rodriguez se especializa en medicina interna y atención de emergencias. Su pasión por los animales brilla en cada consulta.",
+                vet2Name: "Dr. James Chen",
+                vet2Role: "Especialista Quirúrgico",
+                vet2Bio: "El Dr. Chen aporta experiencia en técnicas quirúrgicas avanzadas y ortopedia. Está dedicado a garantizar que cada procedimiento se realice con precisión y cuidado.",
+                vet3Name: "Dra. Sophie Laurent",
+                vet3Role: "Experta en Dental y Nutrición",
+                vet3Bio: "Especializada en atención preventiva, la Dra. Laurent ayuda a las mascotas a mantener una salud óptima mediante programas de nutrición e higiene dental adecuados.",
+                mapCaption: "📍 Visítanos en el corazón de Barcelona, España",
+                servicesTitle: "Nuestros servicios",
+                service1Title: "Vacunaciones",
+                service1Desc: "Programas integrales de vacunación para proteger a sus mascotas de enfermedades prevenibles y garantizar su salud a largo plazo.",
+                service2Title: "Revisiones",
+                service2Desc: "Exámenes de salud regulares para monitorear el bienestar de su mascota y detectar problemas potenciales tempranamente.",
+                service3Title: "Cirugía",
+                service3Desc: "Instalaciones quirúrgicas de última generación y atención experta para procedimientos rutinarios y complejos.",
+                service4Title: "Cuidado dental",
+                service4Desc: "Limpieza y tratamiento dental profesional para mantener la salud oral de su mascota y prevenir enfermedades.",
+                service5Title: "Peluquería",
+                service5Desc: "Servicios expertos de peluquería para mantener a su mascota luciendo y sintiéndose lo mejor posible.",
+                service6Title: "Nutrición",
+                service6Desc: "Planes de nutrición personalizados adaptados a las necesidades específicas y condiciones de salud de su mascota.",
+                testimonialsTitle: "Lo que dicen nuestros clientes",
+                testimonial1Quote: "¡El equipo de Pawfect Care salvó la vida de mi perro durante una emergencia. Su rápida respuesta y atención experta fueron increíbles. No puedo agradecerles lo suficiente!",
+                testimonial1Author: "Sarah Thompson",
+                testimonial1Pet: "Dueña de Max, Golden Retriever",
+                testimonial2Quote: "La Dra. Rodriguez ha estado cuidando a mi gato durante años. Es conocedora, compasiva y siempre se toma el tiempo para responder todas mis preguntas. ¡Muy recomendable!",
+                testimonial2Author: "Miguel Santos",
+                testimonial2Pet: "Dueño de Luna, Gato Persa",
+                testimonial3Quote: "Desde revisiones rutinarias hasta cuidado dental, Pawfect Care siempre ha proporcionado un servicio excepcional. ¡Realmente tratan a las mascotas como familia!",
+                testimonial3Author: "Emma Wilson",
+                testimonial3Pet: "Dueña de Bella, Beagle",
+                contactTitle: "Reservar una cita",
+                formPetName: "Nombre de la mascota *",
+                formAnimalType: "Tipo de animal *",
+                formSelect: "Seleccionar...",
+                formDog: "Perro",
+                formCat: "Gato",
+                formBird: "Pájaro",
+                formRabbit: "Conejo",
+                formOther: "Otro",
+                formOwnerName: "Su nombre *",
+                formEmail: "Correo electrónico *",
+                formDateTime: "Fecha y hora preferidas *",
+                formMessage: "Mensaje",
+                formSubmit: "Enviar solicitud de cita",
+                formSuccess: "¡Gracias! Nos pondremos en contacto pronto para confirmar su cita.",
+                contactInfoTitle: "Información de contacto",
+                infoAddressTitle: "Dirección",
+                infoAddress: "Carrer de Provença, 265<br>08008 Barcelona, España",
+                infoPhoneTitle: "Teléfono",
+                infoPhone: "+34 932 156 789",
+                infoEmailTitle: "Correo electrónico",
+                infoEmail: "info@pawfectcare.com",
+                infoHoursTitle: "Horario de atención",
+                infoHours: "Lun-Vie: 9:00 - 20:00<br>Sáb: 10:00 - 18:00<br>Dom: Solo emergencias",
+                footerAboutTitle: "Pawfect Care",
+                footerAboutText: "Su socio de confianza en atención veterinaria. Brindando servicios veterinarios profesionales y compasivos en Barcelona desde 2010.",
+                footerQuickLinksTitle: "Enlaces rápidos",
+                footerServicesTitle: "Servicios",
+                footerCopyright: "© 2025 Clínica Veterinaria Pawfect Care. Todos los derechos reservados."
+            },
+            bg: {
+                navHome: "Начало",
+                navAbout: "За нас",
+                navServices: "Услуги",
+                navTestimonials: "Отзиви",
+                navContact: "Контакт",
+                heroTitle: "Грижим се за домашните любимци като за семейство",
+                heroSubtitle: "Професионални ветеринарни грижи в сърцето на Барселона",
+                heroButton: "Запази час",
+                aboutTitle: "За нас",
+                aboutIntro: "В Pawfect Care вярваме, че всеки домашен любимец заслужава съпричастна, експертна грижа. Нашият отдаден екип от ветеринарни специалисти се ангажира да предостави най-високо качество здравни грижи за вашите обични спътници, третирайки всяко животно с любовта и уважението, които заслужава.",
+                teamTitle: "Запознайте се с нашия екип",
+                vet1Name: "Д-р Мария Родригес",
+                vet1Role: "Главен ветеринарен лекар",
+                vet1Bio: "С над 15 години опит, д-р Родригес се специализира във вътрешна медицина и спешна помощ. Нейната страст към животните се проявява във всяка консултация.",
+                vet2Name: "Д-р Джеймс Чен",
+                vet2Role: "Специалист по хирургия",
+                vet2Bio: "Д-р Чен внася експертиза в усъвършенствани хирургични техники и ортопедия. Той е отдаден да гарантира, че всяка процедура се изпълнява с точност и грижа.",
+                vet3Name: "Д-р Софи Лоран",
+                vet3Role: "Експерт по дентална и хранителна",
+                vet3Bio: "Специализирана в превантивни грижи, д-р Лоран помага на домашните любимци да поддържат оптимално здраве чрез подходящи програми за хранене и дентална хигиена.",
+                mapCaption: "📍 Посетете ни в сърцето на Барселона, Испания",
+                servicesTitle: "Нашите услуги",
+                service1Title: "Ваксинации",
+                service1Desc: "Цялостни програми за ваксинация за защита на вашите домашни любимци от предотвратими заболявания и осигуряване на тяхното дългосрочно здраве.",
+                service2Title: "Прегледи",
+                service2Desc: "Редовни здравни прегледи за наблюдение на благосъстоянието на вашия домашен любимец и ранно засичане на потенциални проблеми.",
+                service3Title: "Хирургия",
+                service3Desc: "Най-модерни хирургични съоръжения и експертни грижи за рутинни и сложни процедури.",
+                service4Title: "Дентални грижи",
+                service4Desc: "Професионално почистване и лечение на зъби за поддържане на оралното здраве на вашия домашен любимец и предотвратяване на заболявания.",
+                service5Title: "Грижи за козина",
+                service5Desc: "Експертни услуги за грижа за козината, за да поддържате вашия домашен любимец в най-добрата му форма.",
+                service6Title: "Хранене",
+                service6Desc: "Персонализирани хранителни планове, съобразени със специфичните нужди и здравословни състояния на вашия домашен любимец.",
+                testimonialsTitle: "Какво казват нашите клиенти",
+                testimonial1Quote: "Екипът на Pawfect Care спаси живота на моето куче по време на спешен случай. Бързата им реакция и експертните грижи бяха невероятни. Не мога да им благодаря достатъчно!",
+                testimonial1Author: "Сара Томпсън",
+                testimonial1Pet: "Собственик на Макс, Голдън Ретрийвър",
+                testimonial2Quote: "Д-р Родригес се грижи за моята котка от години. Тя е компетентна, съпричастна и винаги отделя време да отговори на всички мои въпроси. Силно препоръчвам!",
+                testimonial2Author: "Мигел Сантос",
+                testimonial2Pet: "Собственик на Луна, Персийска котка",
+                testimonial3Quote: "От рутинни прегледи до дентални грижи, Pawfect Care винаги е предоставяла изключително обслужване. Те наистина третират домашните любимци като семейство!",
+                testimonial3Author: "Ема Уилсън",
+                testimonial3Pet: "Собственик на Бела, Бийгъл",
+                contactTitle: "Запазете час",
+                formPetName: "Име на домашния любимец *",
+                formAnimalType: "Вид животно *",
+                formSelect: "Изберете...",
+                formDog: "Куче",
+                formCat: "Котка",
+                formBird: "Птица",
+                formRabbit: "Заек",
+                formOther: "Друго",
+                formOwnerName: "Вашето име *",
+                formEmail: "Имейл *",
+                formDateTime: "Предпочитана дата и час *",
+                formMessage: "Съобщение",
+                formSubmit: "Изпрати заявка за час",
+                formSuccess: "Благодарим ви! Скоро ще се свържем с вас, за да потвърдим вашия час.",
+                contactInfoTitle: "Информация за контакт",
+                infoAddressTitle: "Адрес",
+                infoAddress: "Carrer de Provença, 265<br>08008 Барселона, Испания",
+                infoPhoneTitle: "Телефон",
+                infoPhone: "+34 932 156 789",
+                infoEmailTitle: "Имейл",
+                infoEmail: "info@pawfectcare.com",
+                infoHoursTitle: "Работно време",
+                infoHours: "Пон-Пет: 9:00 - 20:00<br>Съб: 10:00 - 18:00<br>Нед: Само спешни случаи",
+                footerAboutTitle: "Pawfect Care",
+                footerAboutText: "Вашият доверен партньор в грижата за домашни любимци. Предоставяме съпричастни, професионални ветеринарни услуги в Барселона от 2010 година.",
+                footerQuickLinksTitle: "Бързи връзки",
+                footerServicesTitle: "Услуги",
+                footerCopyright: "© 2025 Ветеринарна клиника Pawfect Care. Всички права запазени."
+            }
+        };
+
+        let currentLanguage = 'en';
+        let currentTestimonial = 0;
+        let testimonialInterval;
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            const langMap = { en: 'EN', de: 'DE', es: 'ES', bg: 'BG' };
+            document.getElementById('languageBtn').textContent = `${langMap[lang]} 🌐`;
+            document.getElementById('languageDropdown').classList.remove('active');
+
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    if (element.tagName === 'INPUT' && element.type === 'submit') {
+                        element.value = translations[lang][key];
+                    } else if (element.tagName === 'OPTION') {
+                        element.textContent = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+        }
+
+        document.getElementById('languageBtn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.getElementById('languageDropdown').classList.toggle('active');
+        });
+
+        document.addEventListener('click', function() {
+            document.getElementById('languageDropdown').classList.remove('active');
+        });
+
+        document.getElementById('mobileToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(
+            entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        document.querySelector('.hero').classList.add('visible');
+
+        function rotateTestimonials() {
+            const testimonials = document.querySelectorAll('.testimonial');
+            const dots = document.querySelectorAll('.dot');
+            
+            testimonials[currentTestimonial].classList.remove('active');
+            dots[currentTestimonial].classList.remove('active');
+            
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            
+            testimonials[currentTestimonial].classList.add('active');
+            dots[currentTestimonial].classList.add('active');
+        }
+
+        function goToTestimonial(index) {
+            const testimonials = document.querySelectorAll('.testimonial');
+            const dots = document.querySelectorAll('.dot');
+            
+            testimonials[currentTestimonial].classList.remove('active');
+            dots[currentTestimonial].classList.remove('active');
+            
+            currentTestimonial = index;
+            
+            testimonials[currentTestimonial].classList.add('active');
+            dots[currentTestimonial].classList.add('active');
+            
+            clearInterval(testimonialInterval);
+            testimonialInterval = setInterval(rotateTestimonials, 5000);
+        }
+
+        testimonialInterval = setInterval(rotateTestimonials, 5000);
+
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const petName = document.getElementById('petName').value;
+            const animalType = document.getElementById('animalType').value;
+            const ownerName = document.getElementById('ownerName').value;
+            const email = document.getElementById('email').value;
+            const datetime = document.getElementById('datetime').value;
+            const message = document.getElementById('message').value;
+
+            if (!petName || !animalType || !ownerName || !email || !datetime) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+
+            this.reset();
+
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+        });
+
+        window.addEventListener('scroll', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
